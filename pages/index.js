@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
+//import { getSortedPostsData } from '../lib/posts'
+import { getFirestoreData } from '../lib/db'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 
-export default function Home() {
+/*export default function Home() {
   return (
     <Layout home>
       <Head>
@@ -21,4 +23,25 @@ export default function Home() {
       </section>
     </Layout>
   )
+}*/
+export default function Home({ DBData }) {
+  console.log("test2");
+  console.log(DBData);
+  return (
+    <Layout home>
+      <Head>…</Head>
+      <p>{DBData.channelId}</p>
+    </Layout>
+  )
+}
+
+export async function getStaticProps() {
+  const DBData = await getFirestoreData();
+  console.log("test");
+  console.log(DBData);
+  return {
+    props: {
+      DBData
+    }
+  }
 }

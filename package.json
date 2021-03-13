@@ -8,8 +8,26 @@
     "start": "next start"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "firebase": "^8.3.0",
+    "gray-matter": "^4.0.2",
     "next": "^10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
-  }
+  },
+  "description": "This is a starter template for [Learn Next.js](https://nextjs.org/learn).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aopontann/nextjs-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aopontann/nextjs-blog/issues"
+  },
+  "homepage": "https://github.com/aopontann/nextjs-blog#readme"
 }
