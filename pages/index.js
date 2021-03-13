@@ -30,6 +30,7 @@ export default function Home({ DBData }) {
   return (
     <Layout home>
       <Head>…</Head>
+      <p>チャンネルID</p>
       <p>{DBData.channelId}</p>
     </Layout>
   )
