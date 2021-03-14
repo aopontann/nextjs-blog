@@ -28,7 +28,8 @@ export default function Layout({ children, home }) {
         {home ? (
           <>
             <img
-              src="/images/profile.jpg"
+              //src="/images/profile.jpg"
+              src="https://i.ytimg.com/vi/-6JYcjDjzuo/default.jpg"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
