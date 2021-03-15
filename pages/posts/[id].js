@@ -37,9 +37,9 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   //const postData = getPostData(params.id)
   const postData = {
-    title: "aaa",
+    title: "title",
     id: params.id,
-    channelId: "ccc"
+    channelId: "channelId"
   }
   console.log("params");
   console.log(params);
