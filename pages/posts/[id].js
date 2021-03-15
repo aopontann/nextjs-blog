@@ -1,14 +1,25 @@
 import Layout from '../../components/layout'
-import { getFirestoreData } from '../../lib/db'
+import { getVtuberInfo, getSelectedVideos } from '../../lib/db'
 
-export default function Post({ postData }) {
+export default function Post({ postData, videoInfos }) {
   return (
     <Layout>
+      {postData.Affiliation}
+      <br />
+      <img src={postData.image}/>
       {postData.name}
       <br />
       {postData.channelId}
       <br />
-      {postData.videos.join('\r\n')}
+      <ul>
+        {videoInfos.map(({ id, title, thumbnail}) => (
+          <li>
+            <img src={thumbnail}/>
+            <p>{title}</p>
+            <a href={`https://www.youtube.com/watch?v=${id}`}>{id}</a>
+          </li>
+        ))}
+      </ul>
     </Layout>
   )
 }
@@ -35,12 +46,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getFirestoreData(params.id);
+  const postData = await getVtuberInfo(params.id);
+  const videoInfos = await getSelectedVideos(postData.videos);
   console.log("params");
   console.log(params);
   return {
     props: {
-      postData
+      postData,
+      videoInfos
     }
   }
 }

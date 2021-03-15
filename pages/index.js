@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { getFirestoreData } from '../lib/db'
+import { getVtuberInfo } from '../lib/db'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { addBasePath } from 'next/dist/next-server/lib/router/router'
@@ -46,8 +46,8 @@ export default function Home({ vtuberInfo }) {
 }
 
 export async function getStaticProps() {
-  const DBData1 = await getFirestoreData("ChroNoiR");
-  const DBData2 = await getFirestoreData("えま★おうがすと");
+  const DBData1 = await getVtuberInfo("ChroNoiR");
+  const DBData2 = await getVtuberInfo("えま★おうがすと");
   const vtuberInfo = [DBData1, DBData2];
   
   return {
