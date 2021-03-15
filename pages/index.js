@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 //import { getSortedPostsData } from '../lib/posts'
-//import { getFirestoreData } from '../lib/db'
+import { getFirestoreData } from '../lib/db'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { addBasePath } from 'next/dist/next-server/lib/router/router'
@@ -19,8 +19,8 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENTID
 };
 // Initialize Firebase
-//firebase.initializeApp(firebaseConfig);
-//const db = firebase.firestore();
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 /*export default function Home() {
   return (
