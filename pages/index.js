@@ -1,8 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-//import { getSortedPostsData } from '../lib/posts'
 import { getFirestoreData } from '../lib/db'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
@@ -27,7 +24,7 @@ import { addBasePath } from 'next/dist/next-server/lib/router/router'
     </Layout>
   )
 }*/
-export default function Home({ vtuberInfo, videoInfo }) {
+export default function Home({ vtuberInfo }) {
   
   return (
     <Layout home>
@@ -39,8 +36,6 @@ export default function Home({ vtuberInfo, videoInfo }) {
             <Link href={`posts/${name}`}>
               <a>name: {name}</a>
             </Link>
-            <p>channelId: {channelId}</p>
-            <p>videos[0]: {videos[0]}</p>
           </div>
         ))}
         
@@ -51,36 +46,10 @@ export default function Home({ vtuberInfo, videoInfo }) {
 }
 
 export async function getStaticProps() {
-  //const DBData = await getFirestoreData();
-  const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APPID,
-    measurementId: process.env.FIREBASE_MEASUREMENTID
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  const DBData1 = await getFirestoreData(db, "ChroNoiR");
-  const DBData2 = await getFirestoreData(db, "えま★おうがすと");
+  const DBData1 = await getFirestoreData("ChroNoiR");
+  const DBData2 = await getFirestoreData("えま★おうがすと");
   const vtuberInfo = [DBData1, DBData2];
-  /*const vtuberInfo = [
-    {
-      name: "ChroNoiR",
-      channelId: "UCz6vnIbgiqFT9xUcD6Bp65Q",
-      videos: ["test1", "test2"]
-    },
-    {
-      name: "えま★おうがすと",
-      channelId: "UCl1oLKcAq93p-pwKfDGhiYQ",
-      videos: ["test3", "test4"]
-    }
-  ];*/
-
+  
   return {
     props: {
       vtuberInfo: vtuberInfo

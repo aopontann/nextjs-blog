@@ -1,14 +1,14 @@
 import Layout from '../../components/layout'
-//import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getFirestoreData } from '../../lib/db'
 
 export default function Post({ postData }) {
   return (
     <Layout>
-      {postData.title}
-      <br />
-      {postData.id}
+      {postData.name}
       <br />
       {postData.channelId}
+      <br />
+      {postData.videos.join('\r\n')}
     </Layout>
   )
 }
@@ -35,12 +35,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  //const postData = getPostData(params.id)
-  const postData = {
-    title: "title",
-    id: params.id,
-    channelId: "channelId"
-  }
+  const postData = await getFirestoreData(params.id);
   console.log("params");
   console.log(params);
   return {
