@@ -6,7 +6,7 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { addBasePath } from 'next/dist/next-server/lib/router/router'
 
-const firebase = require("firebase");
+/*const firebase = require("firebase");
 require("firebase/firestore");
 
 const firebaseConfig = {
@@ -20,7 +20,7 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const db = firebase.firestore();*/
 
 /*export default function Home() {
   return (
