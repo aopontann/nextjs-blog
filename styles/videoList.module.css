@@ -24,10 +24,28 @@
   margin: 3rem 0 0;
 }
 
-.videolist {
+/* .ul_videolist {
+  background-color: darkgoldenrod;
+} */
+
+.li_videolist {
   list-style: none;
+  height: 110px;
+  /* background-color: aqua; */
+}
+
+.video {
+  /* background-color: greenyellow; */
+  margin: 10px;
 }
 
 .thumbnail {
+  padding-top: 10px;
+  padding-right: 10px;
   float: left;
+}
+
+.title {
+  float: left;
+  margin-top: 20px;
 }

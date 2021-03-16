@@ -20,22 +20,25 @@ export default function Post({ postData, videoInfos }) {
           className={`${styles.headerImage} ${utilStyles.borderCircle}`}
           alt={name}
         />
-        <a href={`https://www.youtube.com/channel/${postData.channelId}`} >
+        <a href={`https://www.youtube.com/channel/${postData.channelId}`} target="_blank">
           <h2 className={utilStyles.headingLg}>{name}</h2>
         </a>
       </header>
 
       <main>
-        <ul>
+        <ul className={styles.ul_videolist}>
           {videoInfos.map(({ id, title, thumbnail }) => (
-            <li className={styles.videolist}>
-              <img className={styles.thumbnail} src={thumbnail} />
-              <a
-                className={styles.title}
-                href={`https://www.youtube.com/watch?v=${id}`}
-              >
-                {title}
-              </a>
+            <li className={styles.li_videolist}>
+              <div className={styles.video}>
+                <img className={styles.thumbnail} src={thumbnail} />
+                <a
+                  className={styles.title}
+                  href={`https://www.youtube.com/watch?v=${id}`}
+                  target="_blank"
+                >
+                  {title}
+                </a>
+              </div>
             </li>
           ))}
         </ul>
