@@ -1,27 +1,53 @@
-import Layout from '../../components/layout'
-import { getVtuberInfo, getSelectedVideos } from '../../lib/db'
+//import Layout from "../../components/layout2";
+import Head from "next/head";
+import Link from "next/link";
+import styles from "../../styles/videoList.module.css";
+import utilStyles from "../../styles/utils.module.css";
+import { getVtuberInfo, getSelectedVideos } from "../../lib/db";
 
 export default function Post({ postData, videoInfos }) {
+  const name = postData.name;
   return (
-    <Layout>
-      {postData.Affiliation}
-      <br />
-      <img src={postData.image}/>
-      {postData.name}
-      <br />
-      {postData.channelId}
-      <br />
-      <ul>
-        {videoInfos.map(({ id, title, thumbnail}) => (
-          <li>
-            <img src={thumbnail}/>
-            <p>{title}</p>
-            <a href={`https://www.youtube.com/watch?v=${id}`}>{id}</a>
-          </li>
-        ))}
-      </ul>
-    </Layout>
-  )
+    <div className={styles.container}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+        <title>{name}のページだよ</title>
+      </Head>
+
+      <header className={styles.header}>
+        <img
+          src="/images/profile.jpg"
+          className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+          alt={name}
+        />
+        <a href={`https://www.youtube.com/channel/${postData.channelId}`} >
+          <h2 className={utilStyles.headingLg}>{name}</h2>
+        </a>
+      </header>
+
+      <main>
+        <ul>
+          {videoInfos.map(({ id, title, thumbnail }) => (
+            <li className={styles.videolist}>
+              <img className={styles.thumbnail} src={thumbnail} />
+              <a
+                className={styles.title}
+                href={`https://www.youtube.com/watch?v=${id}`}
+              >
+                {title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </main>
+
+      <div className={styles.backToHome}>
+        <Link href="/">
+          <a>← Back to home</a>
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 export async function getStaticPaths() {
@@ -30,19 +56,19 @@ export async function getStaticPaths() {
   const paths = [
     {
       params: {
-        id: 'ChroNoiR'
-      }
+        id: "ChroNoiR",
+      },
     },
     {
       params: {
-        id: 'えま★おうがすと'
-      }
-    }
+        id: "えま★おうがすと",
+      },
+    },
   ];
   return {
     paths,
-    fallback: false
-  }
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
@@ -53,7 +79,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       postData,
-      videoInfos
-    }
-  }
+      videoInfos,
+    },
+  };
 }

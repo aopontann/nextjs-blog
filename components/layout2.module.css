@@ -23,3 +23,11 @@
 .backToHome {
   margin: 3rem 0 0;
 }
+
+.videolist {
+  list-style: none;
+}
+
+.thumbnail {
+  float: left;
+}
